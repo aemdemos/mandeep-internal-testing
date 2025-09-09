@@ -129,21 +129,15 @@
         "description": "The label shown for this section in the Content Tree"
       },
       {
-        "component": "text",
+        "component": "multiselect",
         "name": "style",
         "label": "Style",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "accordion",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
+        "options": [
+          {
+            "name": "Highlight",
+            "value": "highlight"
+          }
+        ]
       }
     ]
   },
@@ -167,25 +161,8 @@
     ]
   },
   {
-    "id": "cards",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      }
-    ]
-  },
-  {
     "id": "card",
     "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      },
       {
         "component": "reference",
         "valueType": "string",
@@ -203,25 +180,8 @@
     ]
   },
   {
-    "id": "carousel",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      }
-    ]
-  },
-  {
     "id": "carousel-item",
     "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      },
       {
         "component": "reference",
         "valueType": "string",
@@ -250,12 +210,6 @@
     "fields": [
       {
         "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      },
-      {
-        "component": "text",
         "valueType": "number",
         "name": "columns",
         "value": "",
@@ -273,12 +227,6 @@
   {
     "id": "embed",
     "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      },
       {
         "component": "reference",
         "valueType": "string",
@@ -305,12 +253,6 @@
     "id": "fragment",
     "fields": [
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      },
-      {
         "component": "aem-content",
         "name": "reference",
         "label": "Reference"
@@ -320,12 +262,6 @@
   {
     "id": "hero",
     "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      },
       {
         "component": "reference",
         "valueType": "string",
@@ -353,12 +289,6 @@
     "id": "modal",
     "fields": [
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      },
-      {
         "component": "aem-content",
         "name": "link",
         "label": "Link"
@@ -373,12 +303,6 @@
   {
     "id": "quote",
     "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      },
       {
         "component": "richtext",
         "valueType": "string",
@@ -570,20 +494,11 @@
     ]
   },
   {
-    "id": "tabs",
+    "id": "tabs-item",
     "fields": [
       {
         "component": "text",
         "valueType": "string",
-        "name": "classes",
-        "label": "Style"
-      }
-    ]
-  },
-  {
-    "id": "tabs-item",
-    "fields": [
-      {
         "name": "tabName",
         "value": "",
         "label": "Tab Name"

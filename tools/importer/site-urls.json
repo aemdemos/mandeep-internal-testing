@@ -1,63 +1,75 @@
 {
-  "originUrl": "https://www.msccruises.ie",
+  "originUrl": "https://www.wknd-trendsetters.site",
   "aborted": false,
+  "lastCrawled": "https://www.wknd-trendsetters.site/",
   "urls": [
     {
-      "url": "https://www.msccruises.ie/",
-      "source": "MANUAL",
+      "url": "https://www.wknd-trendsetters.site/",
+      "source": "SITEMAPS",
       "targetPath": "/",
-      "id": "57106fcbe387dbab453dd352ae3f2957b2f45ad3"
+      "id": "1b9ba84f36ee3a519917302a79dfd970725bae31"
     },
     {
-      "url": "https://www.msccruises.ie/deals",
-      "source": "MANUAL",
-      "targetPath": "/deals",
-      "id": "7731b12c2a49cba4fa44b894db4f4ea595919ba5"
+      "url": "https://www.wknd-trendsetters.site/blog/fashion-blog-post",
+      "source": "SITEMAPS",
+      "targetPath": "/blog/fashion-blog-post",
+      "id": "9b4d89f80efba6f8dbcb1e3da8ea8ffa8771a959"
     },
     {
-      "url": "https://www.msccruises.ie/deals/last-minute",
-      "source": "MANUAL",
-      "targetPath": "/deals/last-minute",
-      "id": "20090b82b9960f9cdbae3e35dcbc9644d877b362"
+      "url": "https://www.wknd-trendsetters.site/blog/fashion-trends-young-culture",
+      "source": "SITEMAPS",
+      "targetPath": "/blog/fashion-trends-young-culture",
+      "id": "f5bdda3762c99b21ef3c8f0ca75cb53a00b4e8bf"
     },
     {
-      "url": "https://www.msccruises.ie/deals/offers-of-the-week",
-      "source": "MANUAL",
-      "targetPath": "/deals/offers-of-the-week",
-      "id": "d530c6a01e5cda098f1dafbec239b657f37cadf7"
+      "url": "https://www.wknd-trendsetters.site/blog/fashion-trends-young-style",
+      "source": "SITEMAPS",
+      "targetPath": "/blog/fashion-trends-young-style",
+      "id": "be00f351b0490d8b536bf724216d6530c30d5684"
     },
     {
-      "url": "https://www.msccruises.ie/faq",
-      "source": "MANUAL",
+      "url": "https://www.wknd-trendsetters.site/blog/latest-trends-young-casual-fashion",
+      "source": "SITEMAPS",
+      "targetPath": "/blog/latest-trends-young-casual-fashion",
+      "id": "971148fccf483ccd07f6ef722bc01c7fb46f61d5"
+    },
+    {
+      "url": "https://www.wknd-trendsetters.site/faq",
+      "source": "SITEMAPS",
       "targetPath": "/faq",
-      "id": "0fcf7b86dfc89055f4c6dbb0f4b41788c0b53538"
+      "id": "429d6f000c5a6e38a121160bf56d01b17365cffe"
     },
     {
-      "url": "https://www.msccruises.ie/integrity-compliance",
-      "source": "MANUAL",
-      "targetPath": "/integrity-compliance",
-      "id": "d5cc128bbdff04b72e7bc13896121acd39eb345a"
+      "url": "https://www.wknd-trendsetters.site/fashion-insights",
+      "source": "SITEMAPS",
+      "targetPath": "/fashion-insights",
+      "id": "67430c465ff7767e6ae98a0cffa44cd32754a351"
     },
     {
-      "url": "https://www.msccruises.ie/search/itinerary?cruiseId=VI20251209BGIBGI&itineraryCode=UVTW&viewPrice=person&filterBy=early&objID=VI20251209BGIBGI%7CEUR%7C*%7CIRL%7C*%7C0%7C0%7C0%7C2%7CIB%7CVIF01335IR5010MS&isDeal=true&flyAndCruise=hasAir",
-      "source": "MANUAL",
-      "targetPath": "/search/itinerary",
-      "id": "4570fd8e80e9418f255a13e72b1b25f35d36f2d5"
+      "url": "https://www.wknd-trendsetters.site/fashion-trends-of-the-season",
+      "source": "SITEMAPS",
+      "targetPath": "/fashion-trends-of-the-season",
+      "id": "1cfeb2756419a8f56a89a355f5557c3321845adb"
     },
     {
-      "url": "https://www.msccruises.ie/search/itinerary?cruiseId=VI20260203BGIBGI&itineraryCode=UVUQ&viewPrice=person&filterBy=early&objID=VI20260203BGIBGI%7CEUR%7C*%7CIRL%7C*%7C0%7C0%7C0%7C2%7CIR1%7CVIF01755IR6010MS&isDeal=true&flyAndCruise=hasAir",
-      "source": "MANUAL",
-      "targetPath": "/search/itinerary",
-      "id": "4252327d0928d5dd9bc6cefa21afa174a98645f4"
+      "url": "https://www.wknd-trendsetters.site/fashion-trends-young-adults",
+      "source": "SITEMAPS",
+      "targetPath": "/fashion-trends-young-adults",
+      "id": "d2dd722de7842a6232ce56b1307d383ff72c9358"
     },
     {
-      "url": "https://www.msccruises.ie/search/itinerary?cruiseId=VI20260317BGIBGI&itineraryCode=UVU5&viewPrice=person&filterBy=early&objID=VI20260317BGIBGI%7CEUR%7C*%7CIRL%7C*%7C0%7C0%7C0%7C2%7CIR1%7CVIF02655IR6010MS&isDeal=true",
-      "source": "MANUAL",
-      "targetPath": "/search/itinerary",
-      "id": "3b91d429354764e67cccc4c45e4d48fd8a771fe4"
+      "url": "https://www.wknd-trendsetters.site/fashion-trends-young-adults-casual-sport",
+      "source": "SITEMAPS",
+      "targetPath": "/fashion-trends-young-adults-casual-sport",
+      "id": "1a14744466075b2d00884f27fb69e2633b6fcb84"
+    },
+    {
+      "url": "https://www.wknd-trendsetters.site/latest-trends-young-fashion",
+      "source": "SITEMAPS",
+      "targetPath": "/latest-trends-young-fashion",
+      "id": "f5e200536a2c91b06effaf661df0675e13f262b6"
     }
   ],
-  "lastCrawled": null,
   "crawlOptions": {
     "timeout": 64800000,
     "inclusionPatterns": [],
@@ -65,11 +77,13 @@
     "limit": 100,
     "sameDomain": true,
     "keepHash": false,
-    "strategy": "manual",
+    "strategy": "sitemaps",
+    "logger": {},
     "strategiesAttempted": [
-      "MANUAL"
+      "SITEMAPS"
     ]
   },
   "extractionErrors": [],
-  "errorCountMessage": "none"
+  "errorCountMessage": "none",
+  "error": null
 }

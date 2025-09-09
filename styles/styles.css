@@ -11,73 +11,108 @@
  * governing permissions and limitations under the License.
  */
 :root {
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
+  /* Core color system with CSS variables */
+  --background-color: #f7f8f5;  /* Off-white to match original WKND site */
+  --light-color: #ffffff;        /* Same as background for consistency */
+  --white: #ffffff;              /* Pure white */
+  --dark-color: #000000;         /* Pure black for dark elements */
+  --text-color: #131313;         /* Near black for text */
+  --text-color-light: #505050;   /* Gray for secondary text */
+  --text-color-lighter: #808080; /* Lighter gray for disabled */
+  
+  /* Borders and dividers */
+  --border-color: #c5c5c5;       /* Light gray border */
+  --border-color-light: #dadada; /* Very light border */
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  
+  /* Button styles - Global outline button with yellow shadow */
+  --button-border-color: var(--text-color);
+  --button-yellow-shadow: #f7e04b;
+  --button-padding: 12px 28px;          /* Default size */
+  --button-padding-sm: 7px 24px;        /* Small - for header/compact areas */
+  --button-padding-lg: 16px 32px;       /* Large - for hero/emphasis */
+  --button-border-radius: 50px;
+  --button-border-width: 2px;
+  --button-shadow-offset: 2.5px;        /* Refined from 3px for better proportion */
+  --button-shadow-offset-hover: 4px;    /* Refined from 5px */
+  --button-shadow-offset-active: 1px;
+  
+  /* Links */
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
-  --body-font-family: "MSC Pangea TF", "MSC Pangea TF Fallback", "Adjusted Arial Fallback", "sans-serif";
-  --heading-font-family: "MSC Pangea TF", "MSC Pangea TF Fallback", "Adjusted Arial Fallback", "sans-serif";
-  --body-font-size-m: 16px;
-  --body-font-size-s: 13.28px;
-  --body-font-size-xs: 10.72px;
-  --heading-font-size-xxl: 32px;
-  --heading-font-size-xl: 32px;
-  --heading-font-size-l: 18.72px;
-  --heading-font-size-m: 16px;
-  --heading-font-size-s: 13.28px;
-  --heading-font-size-xs: 10.72px;
-  --nav-height: 117px;
+  --body-font-family: "Instrument Sans", "Instrument Sans Fallback", "sans-serif";
+  --heading-font-family: "Syncopate", "Syncopate Fallback", "sans-serif";
+  --body-font-size-m: 22.56px;
+  --body-font-size-nav: 17px;       /* Navigation font size - matches original WKND */
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 11.36px;
+  --heading-font-size-xxl: 90.4px;
+  --heading-font-size-xl: 45.28px;
+  --heading-font-size-l: 22.56px;
+  --heading-font-size-m: 22.56px;
+  --heading-font-size-s: 16px;
+  --heading-font-size-xs: 11.36px;
+  
+  /* Layout & Spacing */
+  --nav-height: 75px;
   --header-height: var(--nav-height);
+  
+  /* Consistent spacing system */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 40px;
+  --spacing-3xl: 48px;
+  --spacing-4xl: 64px;
+  
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
 }
 
 /* fallback fonts */
 @font-face {
-  font-family:"msc-icons Fallback";
+  font-family:"Instrument Sans Fallback";
   font-style:normal;
   font-weight:400;
   src:local("Arial");
-  ascent-override:93.75%;
-  descent-override:6.25%;
+  ascent-override:93.97%;
+  descent-override:24.22%;
   line-gap-override:0.00%;
-  size-adjust:100.00%;
+  size-adjust:103.22%;
 }
 
 @font-face {
-  font-family:"MSC Pangea TF Fallback";
+  font-family:"Syncopate Fallback";
   font-style:normal;
   font-weight:400;
   src:local("Arial");
-  ascent-override:104.86%;
-  descent-override:26.27%;
-  line-gap-override:0.00%;
-  size-adjust:96.70%;
-}
-
-@font-face {
-  font-family:"MSC Pangea TF Fallback";
-  font-style:normal;
-  font-weight:600;
-  src:local("Arial Bold");
-  ascent-override:108.63%;
-  descent-override:27.21%;
-  line-gap-override:0.00%;
-  size-adjust:93.34%;
+  ascent-override:44.95%;
+  descent-override:12.31%;
+  line-gap-override:4.33%;
+  size-adjust:169.04%;
 }
 
 @media (width>=900px) {
   :root {
-    --body-font-size-m: 16px;
-    --body-font-size-s: 13.28px;
-    --body-font-size-xs: 10.72px;
-    --heading-font-size-xxl: 32px;
-    --heading-font-size-xl: 32px;
-    --heading-font-size-l: 18.72px;
-    --heading-font-size-m: 16px;
-    --heading-font-size-s: 13.28px;
-    --heading-font-size-xs: 10.72px;
-    --nav-height: 117px;
+    --body-font-size-m: 22.56px;
+    --body-font-size-s: 16px;
+    --body-font-size-xs: 11.36px;
+    --heading-font-size-xxl: 90.4px;
+    --heading-font-size-xl: 45.28px;
+    --heading-font-size-l: 22.56px;
+    --heading-font-size-m: 22.56px;
+    --heading-font-size-s: 16px;
+    --heading-font-size-xs: 11.36px;
+    --nav-height: 75px;
   }
 }
 
@@ -113,7 +148,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
-  scroll-margin: 40px;
+  scroll-margin: var(--spacing-2xl);
 }
 
 h1 {
@@ -150,7 +185,7 @@ code, pre {
 }
 
 pre {
-  padding: 16px;
+  padding: var(--spacing-md);
   border-radius: 8px;
   background-color: var(--light-color);
   overflow-x: auto;
@@ -158,7 +193,7 @@ pre {
 }
 
 main>div {
-  margin: 40px 16px;
+  margin: var(--spacing-2xl) var(--spacing-md);
 }
 
 input, textarea, select, button {
@@ -177,43 +212,123 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
+/* Global button styles - Default is outline with yellow shadow */
 a.button:any-link, button {
   box-sizing: border-box;
   display: inline-block;
   max-width: 100%;
-  margin: 12px 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  margin: var(--spacing-md) 0;
   font-family: var(--body-font-family);
   font-style: normal;
-  font-weight: 500;
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  
+  /* Apply outline-shadow style by default */
+  background: transparent;
+  color: var(--button-border-color);
+  border: var(--button-border-width) solid var(--button-border-color);
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  box-shadow: var(--button-shadow-offset) var(--button-shadow-offset) 0 0 var(--button-yellow-shadow);
+  transition: all 0.2s ease;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus {
-  background-color: var(--link-hover-color);
+  background: transparent;
+  color: var(--button-border-color);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--button-shadow-offset-hover) var(--button-shadow-offset-hover) 0 0 var(--button-yellow-shadow);
+  text-decoration: none;
   cursor: pointer;
 }
 
-button:disabled, button:disabled:hover {
-  background-color: var(--light-color);
-  cursor: unset;
+a.button:active, button:active {
+  transform: translate(0, 0);
+  box-shadow: var(--button-shadow-offset-active) var(--button-shadow-offset-active) 0 0 var(--button-yellow-shadow);
 }
 
+button:disabled, button:disabled:hover {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--button-shadow-offset) var(--button-shadow-offset) 0 0 var(--button-yellow-shadow);
+}
+
+/* Primary button style (filled) - use when you need a filled button */
+a.button.primary, button.primary {
+  background-color: var(--text-color);
+  color: var(--white);
+  border: var(--button-border-width) solid var(--text-color);
+  box-shadow: none;
+}
+
+a.button.primary:hover, button.primary:hover {
+  background-color: var(--text-color);
+  color: var(--white);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--button-shadow-offset-hover) var(--button-shadow-offset-hover) 0 0 var(--button-yellow-shadow);
+}
+
+/* Secondary button style - alias for default outline style */
 a.button.secondary, button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
+  /* Inherits default outline-shadow style */
+}
+
+/* Outline-shadow class for explicit use (though it's now the default) */
+a.button.outline-shadow, button.outline-shadow,
+.button-outline-shadow {
+  /* Inherits default styles */
+}
+
+/* Button size variants - maintain consistent styling with different sizing */
+a.button.button-sm, button.button-sm {
+  padding: var(--button-padding-sm);
+  font-size: 15px;  /* Slightly smaller for compact areas */
+}
+
+a.button.button-lg, button.button-lg {
+  padding: var(--button-padding-lg);
+  font-size: 18px;  /* Slightly larger for emphasis */
+}
+
+/* Links in content that look like buttons should have button class added via JS */
+
+/* Reset any block-specific button overrides to use global style */
+.hero .button,
+.hero .button-container .button,
+.cards .button,
+.columns .button,
+.carousel .button,
+.tabs .button,
+.modal .button {
+  /* Force inheritance of global button styles */
+  background: transparent !important;
+  color: var(--button-border-color) !important;
+  border: var(--button-border-width) solid var(--button-border-color) !important;
+  border-radius: var(--button-border-radius) !important;
+  padding: var(--button-padding) !important;
+  box-shadow: var(--button-shadow-offset) var(--button-shadow-offset) 0 0 var(--button-yellow-shadow) !important;
+}
+
+.hero .button:hover,
+.hero .button-container .button:hover,
+.cards .button:hover,
+.columns .button:hover,
+.carousel .button:hover,
+.tabs .button:hover,
+.modal .button:hover {
+  background: transparent !important;
+  color: var(--button-border-color) !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: var(--button-shadow-offset-hover) var(--button-shadow-offset-hover) 0 0 var(--button-yellow-shadow) !important;
 }
 
 main img {
@@ -235,13 +350,13 @@ main img {
 
 /* sections */
 main>.section {
-  margin: 40px 0;
+  margin: var(--spacing-2xl) 0;
 }
 
 main>.section>div {
   max-width: 1200px;
   margin: auto;
-  padding: 0 24px;
+  padding: 0 var(--spacing-lg);
 }
 
 main>.section:first-of-type {
@@ -250,25 +365,30 @@ main>.section:first-of-type {
 
 @media (width>=900px) {
   main>.section>div {
-    padding: 0 32px;
+    padding: 0 var(--spacing-xl);
   }
 }
 
 /* section metadata */
 main .section.light, main .section.highlight {
-  background-color: var(--light-color);
+  /* Remove background - same as body now */
+  /* If sections need different backgrounds, use .dark with black or white explicitly */
   margin: 0;
-  padding: 40px 0;
+  padding: var(--spacing-2xl) 0;
+}
+
+main .section.dark {
+  background-color: var(--dark-color);
+  color: #fff;
 }
 
 .section.hidden {
   display: none;
 }
 
-.section.section-1 {
-  background: rgb(0 0 51) none repeat scroll 0% 0% / auto padding-box border-box;
-}
+/* .section.section-1 removed - same as body background */
 
 .section.section-2 {
-  background: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 40%)) repeat scroll 0% 0% / auto padding-box border-box, rgb(211 211 211) none no-repeat scroll 50% 50% / cover padding-box border-box;
+  background: var(--dark-color);  /* Black section */
+  color: var(--white);
 }
