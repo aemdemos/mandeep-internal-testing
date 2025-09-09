@@ -1,106 +1,80 @@
 {
   "templates": [
     {
-      "name": "'Content Hub'",
+      "name": "'Travel Destination Showcase'",
       "cluster": 1,
       "pages": [
         {
-          "url": "https://www.wknd-trendsetters.site/blog/fashion-trends-young-style",
-          "uuid": "be00f351b0490d8b536bf724216d6530c30d5684"
+          "url": "https://www.msccruises.ie/search/itinerary?cruiseId=VI20260317BGIBGI&itineraryCode=UVU5&viewPrice=person&filterBy=early&objID=VI20260317BGIBGI%7CEUR%7C*%7CIRL%7C*%7C0%7C0%7C0%7C2%7CIR1%7CVIF02655IR6010MS&isDeal=true",
+          "uuid": "3b91d429354764e67cccc4c45e4d48fd8a771fe4"
         },
         {
-          "url": "https://www.wknd-trendsetters.site/blog/fashion-blog-post",
-          "uuid": "9b4d89f80efba6f8dbcb1e3da8ea8ffa8771a959"
+          "url": "https://www.msccruises.ie/search/itinerary?cruiseId=VI20260203BGIBGI&itineraryCode=UVUQ&viewPrice=person&filterBy=early&objID=VI20260203BGIBGI%7CEUR%7C*%7CIRL%7C*%7C0%7C0%7C0%7C2%7CIR1%7CVIF01755IR6010MS&isDeal=true&flyAndCruise=hasAir",
+          "uuid": "4252327d0928d5dd9bc6cefa21afa174a98645f4"
+        },
+        {
+          "url": "https://www.msccruises.ie/search/itinerary?cruiseId=VI20251209BGIBGI&itineraryCode=UVTW&viewPrice=person&filterBy=early&objID=VI20251209BGIBGI%7CEUR%7C*%7CIRL%7C*%7C0%7C0%7C0%7C2%7CIB%7CVIF01335IR5010MS&isDeal=true&flyAndCruise=hasAir",
+          "uuid": "4570fd8e80e9418f255a13e72b1b25f35d36f2d5"
         }
       ]
     },
     {
-      "name": "'Portfolio Showcase'",
+      "name": "'Profile Page'",
       "cluster": 2,
       "pages": [
         {
-          "url": "https://www.wknd-trendsetters.site/latest-trends-young-fashion",
-          "uuid": "f5e200536a2c91b06effaf661df0675e13f262b6"
+          "url": "https://www.msccruises.ie/integrity-compliance",
+          "uuid": "d5cc128bbdff04b72e7bc13896121acd39eb345a"
         }
       ]
     },
     {
-      "name": "'Portfolio Showcase'",
+      "name": "'Corporate Landing Page'",
       "cluster": 3,
       "pages": [
         {
-          "url": "https://www.wknd-trendsetters.site/fashion-trends-young-adults",
-          "uuid": "d2dd722de7842a6232ce56b1307d383ff72c9358"
+          "url": "https://www.msccruises.ie/faq",
+          "uuid": "0fcf7b86dfc89055f4c6dbb0f4b41788c0b53538"
         }
       ]
     },
     {
-      "name": "'Dashboard Template'",
+      "name": "'Course Listing Page'",
       "cluster": 4,
       "pages": [
         {
-          "url": "https://www.wknd-trendsetters.site/faq",
-          "uuid": "429d6f000c5a6e38a121160bf56d01b17365cffe"
+          "url": "https://www.msccruises.ie/",
+          "uuid": "57106fcbe387dbab453dd352ae3f2957b2f45ad3"
         }
       ]
     },
     {
-      "name": "Dashboard Overview",
+      "name": "'Article Page'",
       "cluster": 5,
       "pages": [
         {
-          "url": "https://www.wknd-trendsetters.site/fashion-trends-young-adults-casual-sport",
-          "uuid": "1a14744466075b2d00884f27fb69e2633b6fcb84"
+          "url": "https://www.msccruises.ie/deals/offers-of-the-week",
+          "uuid": "d530c6a01e5cda098f1dafbec239b657f37cadf7"
         }
       ]
     },
     {
-      "name": "'Portfolio Showcase'",
+      "name": "'Travel Destination Page'",
       "cluster": 6,
       "pages": [
         {
-          "url": "https://www.wknd-trendsetters.site/blog/latest-trends-young-casual-fashion",
-          "uuid": "971148fccf483ccd07f6ef722bc01c7fb46f61d5"
+          "url": "https://www.msccruises.ie/deals",
+          "uuid": "7731b12c2a49cba4fa44b894db4f4ea595919ba5"
         }
       ]
     },
     {
-      "name": "Gallery Page",
+      "name": "'Travel Landing Page'",
       "cluster": 7,
       "pages": [
         {
-          "url": "https://www.wknd-trendsetters.site/fashion-trends-of-the-season",
-          "uuid": "1cfeb2756419a8f56a89a355f5557c3321845adb"
-        }
-      ]
-    },
-    {
-      "name": "'Portfolio Showcase'",
-      "cluster": 8,
-      "pages": [
-        {
-          "url": "https://www.wknd-trendsetters.site/",
-          "uuid": "1b9ba84f36ee3a519917302a79dfd970725bae31"
-        }
-      ]
-    },
-    {
-      "name": "'Content Grid Layout'",
-      "cluster": 9,
-      "pages": [
-        {
-          "url": "https://www.wknd-trendsetters.site/blog/fashion-trends-young-culture",
-          "uuid": "f5bdda3762c99b21ef3c8f0ca75cb53a00b4e8bf"
-        }
-      ]
-    },
-    {
-      "name": "Portfolio Grid",
-      "cluster": 10,
-      "pages": [
-        {
-          "url": "https://www.wknd-trendsetters.site/fashion-insights",
-          "uuid": "67430c465ff7767e6ae98a0cffa44cd32754a351"
+          "url": "https://www.msccruises.ie/deals/last-minute",
+          "uuid": "20090b82b9960f9cdbae3e35dcbc9644d877b362"
         }
       ]
     }

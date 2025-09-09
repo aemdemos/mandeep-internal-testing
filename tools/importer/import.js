@@ -11,44 +11,10 @@
  */
 /* global WebImporter */
 /* eslint-disable no-console */
-import columns3Parser from './parsers/columns3.js';
-import columns7Parser from './parsers/columns7.js';
-import columns1Parser from './parsers/columns1.js';
-import columns4Parser from './parsers/columns4.js';
-import hero5Parser from './parsers/hero5.js';
+import columns2Parser from './parsers/columns2.js';
+import carousel9Parser from './parsers/carousel9.js';
 import hero6Parser from './parsers/hero6.js';
-import cards10Parser from './parsers/cards10.js';
-import columns9Parser from './parsers/columns9.js';
-import columns14Parser from './parsers/columns14.js';
-import tableBordered13Parser from './parsers/tableBordered13.js';
-import cards2Parser from './parsers/cards2.js';
-import cardsNoImages19Parser from './parsers/cardsNoImages19.js';
-import columns15Parser from './parsers/columns15.js';
-import hero20Parser from './parsers/hero20.js';
-import tabs22Parser from './parsers/tabs22.js';
-import hero21Parser from './parsers/hero21.js';
-import columns18Parser from './parsers/columns18.js';
-import carousel16Parser from './parsers/carousel16.js';
-import cards23Parser from './parsers/cards23.js';
-import columns27Parser from './parsers/columns27.js';
-import cards24Parser from './parsers/cards24.js';
-import cards25Parser from './parsers/cards25.js';
-import columns29Parser from './parsers/columns29.js';
-import columns31Parser from './parsers/columns31.js';
-import columns26Parser from './parsers/columns26.js';
-import hero28Parser from './parsers/hero28.js';
-import columns30Parser from './parsers/columns30.js';
-import columns32Parser from './parsers/columns32.js';
-import columns38Parser from './parsers/columns38.js';
-import accordion34Parser from './parsers/accordion34.js';
-import hero35Parser from './parsers/hero35.js';
-import cards33Parser from './parsers/cards33.js';
-import columns11Parser from './parsers/columns11.js';
-import hero39Parser from './parsers/hero39.js';
-import hero12Parser from './parsers/hero12.js';
-import cards37Parser from './parsers/cards37.js';
-import carousel36Parser from './parsers/carousel36.js';
-import cards17Parser from './parsers/cards17.js';
+import carousel8Parser from './parsers/carousel8.js';
 import headerParser from './parsers/header.js';
 import metadataParser from './parsers/metadata.js';
 import cleanupTransformer from './transformers/cleanup.js';
@@ -65,44 +31,10 @@ import {
 
 const parsers = {
   metadata: metadataParser,
-  columns3: columns3Parser,
-  columns7: columns7Parser,
-  columns1: columns1Parser,
-  columns4: columns4Parser,
-  hero5: hero5Parser,
+  columns2: columns2Parser,
+  carousel9: carousel9Parser,
   hero6: hero6Parser,
-  cards10: cards10Parser,
-  columns9: columns9Parser,
-  columns14: columns14Parser,
-  tableBordered13: tableBordered13Parser,
-  cards2: cards2Parser,
-  cardsNoImages19: cardsNoImages19Parser,
-  columns15: columns15Parser,
-  hero20: hero20Parser,
-  tabs22: tabs22Parser,
-  hero21: hero21Parser,
-  columns18: columns18Parser,
-  carousel16: carousel16Parser,
-  cards23: cards23Parser,
-  columns27: columns27Parser,
-  cards24: cards24Parser,
-  cards25: cards25Parser,
-  columns29: columns29Parser,
-  columns31: columns31Parser,
-  columns26: columns26Parser,
-  hero28: hero28Parser,
-  columns30: columns30Parser,
-  columns32: columns32Parser,
-  columns38: columns38Parser,
-  accordion34: accordion34Parser,
-  hero35: hero35Parser,
-  cards33: cards33Parser,
-  columns11: columns11Parser,
-  hero39: hero39Parser,
-  hero12: hero12Parser,
-  cards37: cards37Parser,
-  carousel36: carousel36Parser,
-  cards17: cards17Parser,
+  carousel8: carousel8Parser,
   ...customParsers,
 };
 
