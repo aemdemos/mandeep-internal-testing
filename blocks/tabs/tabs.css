@@ -1,6 +1,6 @@
 .tabs .tabs-list {
   display: flex;
-  gap: 0.5ch;
+  gap: var(--spacing-sm);  /* Design system 8px instead of 0.5ch */
   max-width: 100%;
   font-size: var(--body-font-size-xs);
   overflow-x: auto;
@@ -21,9 +21,9 @@
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
-  border: 1px solid #dadada;
+  border: 1px solid var(--border-color-light);  /* Design system border */
   border-radius: 0;
-  padding: 0.5em;
+  padding: var(--spacing-sm);  /* Design system 8px instead of 0.5em */
   background-color: var(--light-color);
   color: initial;
   font-weight: bold;
@@ -48,11 +48,224 @@
 
 .tabs .tabs-panel {
   margin-top: -1px;
-  padding: 24px;
-  border: 1px solid #dadada;
+  padding: var(--spacing-lg);  /* Design system 24px */
+  border: 1px solid var(--border-color-light);  /* Design system border */
   overflow: auto;
 }
 
 .tabs .tabs-panel[aria-hidden='true'] {
   display: none;
+}
+
+@keyframes tabs22-fadeIn {
+from {
+    opacity: 0;
+    transform: translateY(var(--spacing-sm));  /* Design system 8px instead of 10px */
+  }
+to   { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes tabs22-fadeIn {
+from { opacity: 0; transform: translateY(24px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+
+
+.tabs.tabs22 .tabs-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 56px;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 40px;
+  margin-bottom: 56px;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+/* Tabs should look like centered text, not boxy buttons */
+.tabs.tabs22 .tabs-tab {
+  background: none;
+  border: none;
+  color: #949494;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  padding: 0 0 10px;
+  margin: 0;
+  border-bottom: 2.5px solid transparent;
+  min-width: 0;
+  box-shadow: none;
+  text-align: center;
+  transition: color 0.2s, border-bottom-color 0.2s, opacity 0.2s;
+  transform: none; /* Prevent any transforms */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effect: simple white color, no transform */
+.tabs.tabs22 .tabs-tab:hover {
+  color: #fff;
+  transform: none !important; /* Override any inherited transforms */
+}
+
+/* Only the active tab gets a white underline, no background */
+.tabs.tabs22 .tabs-tab[aria-selected="true"] {
+  color: #fff;
+  border-bottom: 2.5px solid #fff;
+  background: none;
+  box-shadow: none;
+}
+
+/* Alignment and appearance for the block and content */
+.tabs.tabs22 {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  box-shadow: none;
+  background: #000;
+  padding-bottom: 128px;
+  max-width: 1150px;
+}
+
+.tabs.tabs22 .tabs-panel {
+  display: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  box-sizing: border-box;
+}
+
+.tabs.tabs22 .tabs-panel[aria-hidden="false"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+
+.tabs.tabs22 .tabs-panel[aria-hidden="false"] > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0;
+}
+
+/* Heading: large, centered, tight to image */
+.tabs.tabs22 .tabs-panel[aria-hidden="false"] > div > h3 {
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2.8rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: 1.08;
+  width: 100%;
+  max-width: 900px;
+  margin: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  word-break: break-word;
+  padding: 0;
+}
+
+.tabs.tabs22 .tabs-panel[aria-hidden="false"] > div > p {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tabs.tabs22 .tabs-panel[aria-hidden="false"] picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tabs.tabs22 .tabs-panel[aria-hidden="false"] img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 32px;
+  margin: 0 auto;
+  box-shadow: none;
+  object-fit: cover;
+  background: #000;
+}
+
+@media (width <= 1100px) {
+  .tabs.tabs22 {
+    max-width: 98vw;
+  }
+
+  .tabs.tabs22 .tabs-list,
+  .tabs.tabs22 .tabs-panel[aria-hidden="false"] picture,
+  .tabs.tabs22 .tabs-panel[aria-hidden="false"] > div > h3 {
+    max-width: 98vw;
+  }
+}
+
+@media (width <= 900px) {
+  .tabs.tabs22 .tabs-list {
+    gap: 22px;
+    margin-top: 22px;
+    margin-bottom: 28px;
+    max-width: 99vw;
+  }
+
+  .tabs.tabs22 .tabs-tab {
+    font-size: 1.02rem;
+    padding-bottom: 7px;
+  }
+
+  .tabs.tabs22 .tabs-panel[aria-hidden="false"] > div > h3,
+  .tabs.tabs22 .tabs-panel[aria-hidden="false"] picture {
+    max-width: 99vw;
+  }
+
+  .tabs.tabs22 .tabs-panel[aria-hidden="false"] img {
+    border-radius: 18px;
+  }
+}
+
+@media (width <= 600px) {
+  .tabs.tabs22 .tabs-list {
+    gap: 5px;
+    margin-top: 7px;
+    margin-bottom: 12px;
+  }
+
+  .tabs.tabs22 .tabs-tab {
+    font-size: 0.91rem;
+    padding-bottom: 3px;
+  }
+
+  .tabs.tabs22 .tabs-panel[aria-hidden="false"] > div > h3,
+  .tabs.tabs22 .tabs-panel[aria-hidden="false"] picture {
+    max-width: 99vw;
+  }
+
+  .tabs.tabs22 .tabs-panel[aria-hidden="false"] img {
+    border-radius: 9px;
+  }
 }

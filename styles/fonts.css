@@ -1,27 +1,42 @@
 
 @font-face {
-  font-family: msc-icons;      
-  src: url('../fonts/msc-icons-400-normal.ttf') format('ttf');
+  font-family: "Instrument Sans";      
+  src: url('../fonts/instrument-sans-400-normal.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+0-10FFFF;
+  unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: "MSC Pangea TF";      
-  src: url('../fonts/msc-pangea-tf-400-normal.woff2') format('woff2');
+  font-family: Syncopate;      
+  src: url('../fonts/syncopate-400-normal.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+0-10FFFF;
+  unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: "MSC Pangea TF";      
-  src: url('../fonts/msc-pangea-tf-600-normal.woff2') format('woff2');
-  font-weight: 600;
+  font-family: Roboto;
+  src: url('../fonts/roboto-regular.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+0-10FFFF;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('../fonts/roboto-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('../fonts/roboto-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
