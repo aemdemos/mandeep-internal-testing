@@ -1,27 +1,32 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the grid container that holds the columns
-  const grid = element.querySelector('.grid-layout');
+  // Get all direct children that are columns
+  const grid = element.querySelector('.aem-Grid');
   if (!grid) return;
+  const columnDivs = Array.from(grid.querySelectorAll(':scope > .teaser'));
 
-  // Get all direct children of the grid (these are the columns)
-  const columns = Array.from(grid.children);
-
-  // If there are no columns, do not proceed
-  if (!columns.length) return;
-
-  // Prepare the header row with the exact block name
+  // Prepare table rows
+  const cells = [];
   const headerRow = ['Columns (columns30)'];
+  cells.push(headerRow);
 
-  // Each cell should reference the actual DOM node from the column
-  const columnsRow = columns.map((col) => col);
+  // Second row: one cell per column, remove empty <p> elements
+  const contentRow = columnDivs.map(col => {
+    const desc = col.querySelector('.cmp-teaser__description');
+    if (!desc) return col;
+    // Clone to avoid mutating the original
+    const descClone = desc.cloneNode(true);
+    // Remove all <p> that are empty or whitespace only
+    descClone.querySelectorAll('p').forEach(p => {
+      if (!p.textContent.trim() && p.children.length === 0) {
+        p.remove();
+      }
+    });
+    return descClone;
+  });
+  cells.push(contentRow);
 
-  // Build the table using the WebImporter utility
-  const table = WebImporter.DOMUtils.createTable([
-    headerRow,
-    columnsRow,
-  ], document);
-
-  // Replace the original section with the new table
+  // Create the table and replace the original element
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

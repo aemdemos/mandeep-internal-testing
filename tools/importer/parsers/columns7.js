@@ -1,32 +1,65 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Block header must match exactly
-  const headerRow = ['Columns (columns7)'];
+  // Helper to get direct child by class
+  function getDirectChildByClass(parent, className) {
+    return Array.from(parent.children).find(child => child.classList.contains(className));
+  }
 
-  // Find all direct children (columns)
-  const columnDivs = Array.from(element.querySelectorAll(':scope > div'));
+  // Find the main grid
+  const grid = element.querySelector('.aem-Grid');
+  if (!grid) return;
 
-  // For each column, extract the image element (preserving semantic meaning)
-  const columns = columnDivs.map(div => {
-    const img = div.querySelector('img');
-    // Defensive: if image exists, use it directly (reference, not clone)
-    if (img) return img;
-    // If no image, preserve any text content
-    if (div.textContent.trim()) {
-      const span = document.createElement('span');
-      span.textContent = div.textContent.trim();
-      return span;
+  // Get left column: image
+  const imageCol = Array.from(grid.children).find(child => child.classList.contains('image'));
+  let imageCell = null;
+  if (imageCol) {
+    const cmpImage = getDirectChildByClass(imageCol, 'cmp-image');
+    if (cmpImage) {
+      const img = cmpImage.querySelector('img');
+      if (img) imageCell = img;
     }
-    // If empty, insert an empty cell
-    return document.createElement('span');
-  });
+  }
 
-  // Table rows: header, then columns
-  const rows = [headerRow, columns];
+  // Get right column: content
+  const cardCol = Array.from(grid.children).find(child => child.classList.contains('wide-card'));
+  let contentCell = document.createElement('div');
+  if (cardCol) {
+    const cardGrid = cardCol.querySelector('.aem-Grid');
+    if (cardGrid) {
+      // Eyebrow
+      const eyebrow = getDirectChildByClass(cardGrid, 'eyebrow2');
+      if (eyebrow) {
+        const cmpText = getDirectChildByClass(eyebrow, 'cmp-text');
+        if (cmpText) {
+          Array.from(cmpText.childNodes).forEach(n => contentCell.appendChild(n.cloneNode(true)));
+        }
+      }
+      // Title
+      const title = getDirectChildByClass(cardGrid, 'title');
+      if (title) {
+        const cmpTitle = getDirectChildByClass(title, 'cmp-title');
+        if (cmpTitle) {
+          Array.from(cmpTitle.childNodes).forEach(n => contentCell.appendChild(n.cloneNode(true)));
+        }
+      }
+      // Text
+      const text = getDirectChildByClass(cardGrid, 'no-bottom-margin-p');
+      if (text) {
+        const cmpText2 = getDirectChildByClass(text, 'cmp-text');
+        if (cmpText2) {
+          Array.from(cmpText2.childNodes).forEach(n => contentCell.appendChild(n.cloneNode(true)));
+        }
+      }
+    }
+  }
 
-  // Create the table using DOMUtils
+  // Only create table if at least one cell has content
+  if (!imageCell && !contentCell.hasChildNodes()) return;
+
+  const headerRow = ['Columns (columns7)'];
+  const contentRow = [imageCell, contentCell];
+  const rows = [headerRow, contentRow];
+
   const table = WebImporter.DOMUtils.createTable(rows, document);
-
-  // Replace the original element with the table
   element.replaceWith(table);
 }

@@ -1,52 +1,49 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find main container blocks
-  const containers = element.querySelectorAll(':scope > div');
-  if (containers.length < 2) return;
+  // Header row as required
+  const headerRow = ['Columns block (columns11)'];
 
-  // Left: headline and eyebrow
-  const leftCol = containers[0];
-  const leftContent = [];
-  // Collect all text content from leftCol
-  leftCol.querySelectorAll(':scope > *').forEach((node) => {
-    leftContent.push(node.cloneNode(true));
-  });
+  // Find the content column (the white circle with text/button)
+  const colContent = element.querySelector('.circle-content .cmp-container');
 
-  // Right: intro, author, button
-  const rightCol = containers[1];
-  const rightContent = [];
-  // Collect all text content from rightCol (including intro, author, button)
-  rightCol.querySelectorAll(':scope > *').forEach((node) => {
-    rightContent.push(node.cloneNode(true));
-  });
+  // Defensive fallback if not found
+  let col = colContent;
+  if (!col) {
+    const fallback = element.querySelector('.circle-content');
+    if (fallback) {
+      col = fallback.querySelector('.cmp-container') || fallback;
+    }
+  }
+  if (!col) col = element;
 
-  // Images from lower grid
-  const imageGrid = element.querySelector('.w-layout-grid.grid-layout.mobile-portrait-1-column');
-  let imgCells = [];
-  if (imageGrid) {
-    const imgDivs = imageGrid.querySelectorAll('.utility-aspect-1x1');
-    imgCells = Array.from(imgDivs).map(div => {
-      const img = div.querySelector('img');
-      return img ? img.cloneNode(true) : '';
-    });
+  // Extract columns: Each logical block (title, subtitle, paragraph, button) as a separate column
+  // We'll treat each direct child of col as a column
+  const colCells = Array.from(col.children)
+    .filter(child => child.textContent.trim() || child.querySelector('img,a,button'));
+
+  // If only one child, fallback: split by .title/.text/.button selectors
+  let cells;
+  if (colCells.length > 1) {
+    cells = colCells;
+  } else {
+    // Try to split by selectors
+    cells = [
+      col.querySelector('.title.eyebrow'),
+      col.querySelector('.title.avenir-regular'),
+      col.querySelector('.text'),
+      col.querySelector('.button')
+    ].filter(Boolean);
   }
 
-  // Always use two columns for the Columns block
-  const contentRow = [leftContent, rightContent];
-
-  // Ensure image row has two columns
-  let imageRow;
-  if (imgCells.length > 0) {
-    imageRow = imgCells.slice(0, 2);
-    while (imageRow.length < 2) imageRow.push('');
-  }
-
-  const cells = [
-    ['Columns (columns11)'],
-    contentRow,
+  // Build the table rows
+  const rows = [
+    headerRow,
+    cells
   ];
-  if (imageRow) cells.push(imageRow);
 
-  const table = WebImporter.DOMUtils.createTable(cells, document);
-  element.replaceWith(table);
+  // Create the block table
+  const block = WebImporter.DOMUtils.createTable(rows, document);
+
+  // Replace the original element
+  element.replaceWith(block);
 }

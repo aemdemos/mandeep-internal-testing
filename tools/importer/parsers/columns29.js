@@ -1,24 +1,27 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Get all direct children (each column)
-  const columns = Array.from(element.querySelectorAll(':scope > div'));
+  // Get the two teaser columns
+  const grid = element.querySelector('.aem-Grid');
+  if (!grid) return;
+  const teasers = Array.from(grid.children).filter(div => div.querySelector('.cmp-teaser__description'));
+  if (teasers.length === 0) return;
 
-  // For each column, find the image (if present)
-  const cells = columns.map((col) => {
-    const img = col.querySelector('img');
-    // Only include the image if it exists
-    return img ? img : '';
+  // For each teaser, extract the .cmp-teaser__description div (the content block)
+  const cells = teasers.map(teaser => {
+    const desc = teaser.querySelector('.cmp-teaser__description');
+    // Defensive: fallback to the teaser itself if not found
+    return desc || teaser;
   });
 
-  // Table rows: header, then columns
-  const tableRows = [
-    ['Columns (columns29)'], // Header row
-    cells                   // Columns row
-  ];
+  // Table header must be exactly as required
+  const headerRow = ['Columns (columns29)'];
+  const contentRow = cells;
 
-  // Create the block table
-  const block = WebImporter.DOMUtils.createTable(tableRows, document);
+  // Create the table
+  const table = WebImporter.DOMUtils.createTable([
+    headerRow,
+    contentRow,
+  ], document);
 
-  // Replace the original element
-  element.replaceWith(block);
+  element.replaceWith(table);
 }

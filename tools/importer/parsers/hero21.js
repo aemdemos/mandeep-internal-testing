@@ -1,33 +1,73 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the card-body container
-  let cardBody = element.querySelector('.card-body');
-  if (!cardBody) cardBody = element;
+  // Extract background image from video poster
+  function getBackgroundImageEl(el) {
+    let posterUrl = null;
+    const videoWithPoster = el.querySelector('video[poster]');
+    if (videoWithPoster && videoWithPoster.getAttribute('poster')) {
+      posterUrl = videoWithPoster.getAttribute('poster');
+    } else {
+      const divWithPoster = el.querySelector('[poster]');
+      if (divWithPoster && divWithPoster.getAttribute('poster')) {
+        posterUrl = divWithPoster.getAttribute('poster');
+      }
+    }
+    if (posterUrl) {
+      const img = document.createElement('img');
+      img.src = posterUrl;
+      img.alt = '';
+      return img;
+    }
+    return '';
+  }
 
-  // Find the image (background/decorative)
-  const img = cardBody.querySelector('img');
+  // Extract all visible text overlay (title, subheading, CTA, etc.)
+  function getTextContentEl(el) {
+    const excludeSelectors = [
+      '.s7controlbar',
+      '.s7socialshare',
+      '.s7emaildialog',
+      '.s7embeddialog',
+      '.s7linkdialog',
+      '.s7waiticon',
+      '.s7iconeffect',
+      '.s7mutablevolume',
+      '.s7fullscreenbutton',
+      '.s7audiocaptions',
+      '.s7closedcaptionbutton',
+      '.s7scrollbuttoncontainer',
+    ];
+    let candidates = Array.from(el.querySelectorAll('div'));
+    candidates = candidates.filter(div => !excludeSelectors.some(sel => div.closest(sel)));
+    let best = null;
+    let maxTextLen = 0;
+    candidates.forEach(div => {
+      const text = typeof div.innerText === 'string' ? div.innerText.trim() : '';
+      if (text.length > maxTextLen) {
+        best = div;
+        maxTextLen = text.length;
+      }
+    });
+    if (best && maxTextLen > 0) {
+      return best.cloneNode(true);
+    }
+    return '';
+  }
 
-  // Gather all possible text content for the third row
-  const contentCell = [];
-  // Title (Heading)
-  const heading = cardBody.querySelector('.h4-heading');
-  if (heading) contentCell.push(heading);
-  // Subheading (optional)
-  const subheading = cardBody.querySelector('h2, .subheading, .subtitle');
-  if (subheading && subheading !== heading) contentCell.push(subheading);
-  // Call-to-Action (optional, look for links/buttons)
-  const cta = cardBody.querySelector('a, button');
-  if (cta) contentCell.push(cta);
-
-  // Table rows
   const headerRow = ['Hero (hero21)'];
-  const imageRow = [img ? img : ''];
-  const contentRow = [contentCell.length ? contentCell : ''];
+  const backgroundImageEl = getBackgroundImageEl(element);
+  const secondRow = [backgroundImageEl];
+  const textContentEl = getTextContentEl(element);
+  const thirdRow = textContentEl ? [textContentEl] : null;
 
-  // Create the block table
-  const cells = [headerRow, imageRow, contentRow];
-  const block = WebImporter.DOMUtils.createTable(cells, document);
+  // Always include three rows: header, image, and text (even if text is empty string)
+  const rows = [headerRow, secondRow];
+  if (thirdRow) {
+    rows.push(thirdRow);
+  } else {
+    rows.push(['']);
+  }
 
-  // Replace the original element
-  element.replaceWith(block);
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

@@ -58,9 +58,22 @@ function focusNavSection() {
  */
 function toggleAllNavSections(sections, expanded = false) {
   sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
-    // All dropdowns should be closed by default to match original WKND design
     section.setAttribute('aria-expanded', expanded);
   });
+}
+
+/**
+ * Processes sections with metadata to organize them by placement
+ * @param {Element} nav The nav element containing all sections
+ * @returns {Object} Object with topSections, mainSections, and bottomSections arrays
+ */
+function processSectionsWithMetadata(nav) {
+  return Array.from(nav.children).reduce((acc, section) => {
+    const placement = ['top', 'bottom'].find((pos) => section.classList.contains(pos)) || 'main';
+
+    acc[`${placement}Sections`].push(section);
+    return acc;
+  }, { topSections: [], mainSections: [], bottomSections: [] });
 }
 
 /**
@@ -120,11 +133,28 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  const { topSections, mainSections, bottomSections } = processSectionsWithMetadata(nav);
+  nav.replaceChildren(...mainSections);
+
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
+
+  // create containers for extra sections
+  const createContainer = (sections, containerClass, sectionClass) => {
+    const container = document.createElement('div');
+    container.className = containerClass;
+    sections.forEach((section) => {
+      section.classList.add(sectionClass);
+      container.append(section);
+    });
+    return container;
+  };
+
+  const topContainer = createContainer(topSections, 'nav-top-container', 'nav-top-section');
+  const bottomContainer = createContainer(bottomSections, 'nav-bottom-container', 'nav-bottom-section');
 
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
@@ -135,48 +165,15 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
-    // Check if there's a Subscribe button in a paragraph and move it to nav-tools
-    const subscribePara = navSections.querySelector('p');
-    if (subscribePara && subscribePara.querySelector('a')) {
-      // Create nav-tools section
-      const navTools = document.createElement('div');
-      navTools.classList.add('nav-tools');
-      // Move the Subscribe link and style it as a button
-      const subscribeLink = subscribePara.querySelector('a');
-      subscribeLink.classList.add('button', 'outline-shadow');
-      // Create button container
-      const buttonContainer = document.createElement('p');
-      buttonContainer.classList.add('button-container');
-      buttonContainer.appendChild(subscribeLink);
-      navTools.appendChild(buttonContainer);
-      // Remove the original paragraph
-      subscribePara.remove();
-      // Add nav-tools to the nav
-      nav.appendChild(navTools);
-    }
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) {
-        navSection.classList.add('nav-drop');
-        // All dropdowns start closed to match original WKND design
-        navSection.setAttribute('aria-expanded', 'false');
-
-        // Add click-only interaction to match original WKND site
-        navSection.addEventListener('click', (e) => {
-          if (isDesktop.matches) {
-            e.stopPropagation();
-            const expanded = navSection.getAttribute('aria-expanded') === 'true';
-            toggleAllNavSections(navSections, false); // Close all
-            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          }
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-          if (!navSection.contains(e.target)) {
-            navSection.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
+      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+      navSection.addEventListener('click', () => {
+        if (isDesktop.matches) {
+          const expanded = navSection.getAttribute('aria-expanded') === 'true';
+          toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        }
+      });
     });
   }
 
@@ -195,6 +192,6 @@ export default async function decorate(block) {
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
-  navWrapper.append(nav);
+  navWrapper.append(topContainer, nav, bottomContainer);
   block.append(navWrapper);
 }
