@@ -1,35 +1,65 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Always use the target block name as the header row
-  const headerRow = ['Columns block (columns7)'];
+  // Helper to get direct child by class
+  function getDirectChildByClass(parent, className) {
+    return Array.from(parent.children).find(child => child.classList.contains(className));
+  }
 
-  // Find the grid row containing the columns
-  const gridRow = element.querySelector('.cbds-l-grid__row');
-  if (!gridRow) return;
+  // Find the main grid
+  const grid = element.querySelector('.aem-Grid');
+  if (!grid) return;
 
-  // Get all columns in the grid row
-  const cols = Array.from(gridRow.children).filter(col =>
-    col.classList.contains('cbds-l-grid__col--6@md') ||
-    col.classList.contains('cbds-l-grid__col--4@xl')
-  );
+  // Get left column: image
+  const imageCol = Array.from(grid.children).find(child => child.classList.contains('image'));
+  let imageCell = null;
+  if (imageCol) {
+    const cmpImage = getDirectChildByClass(imageCol, 'cmp-image');
+    if (cmpImage) {
+      const img = cmpImage.querySelector('img');
+      if (img) imageCell = img;
+    }
+  }
 
-  // Defensive: if no columns found, do nothing
-  if (cols.length === 0) return;
+  // Get right column: content
+  const cardCol = Array.from(grid.children).find(child => child.classList.contains('wide-card'));
+  let contentCell = document.createElement('div');
+  if (cardCol) {
+    const cardGrid = cardCol.querySelector('.aem-Grid');
+    if (cardGrid) {
+      // Eyebrow
+      const eyebrow = getDirectChildByClass(cardGrid, 'eyebrow2');
+      if (eyebrow) {
+        const cmpText = getDirectChildByClass(eyebrow, 'cmp-text');
+        if (cmpText) {
+          Array.from(cmpText.childNodes).forEach(n => contentCell.appendChild(n.cloneNode(true)));
+        }
+      }
+      // Title
+      const title = getDirectChildByClass(cardGrid, 'title');
+      if (title) {
+        const cmpTitle = getDirectChildByClass(title, 'cmp-title');
+        if (cmpTitle) {
+          Array.from(cmpTitle.childNodes).forEach(n => contentCell.appendChild(n.cloneNode(true)));
+        }
+      }
+      // Text
+      const text = getDirectChildByClass(cardGrid, 'no-bottom-margin-p');
+      if (text) {
+        const cmpText2 = getDirectChildByClass(text, 'cmp-text');
+        if (cmpText2) {
+          Array.from(cmpText2.childNodes).forEach(n => contentCell.appendChild(n.cloneNode(true)));
+        }
+      }
+    }
+  }
 
-  // For each column, extract the featureGrid__item (the whole content block)
-  const contentRow = cols.map(col => {
-    // Find the main content block in each column
-    const item = col.querySelector('.dcom-c-featureGrid__item');
-    // Defensive: if not found, fallback to the column itself
-    return item || col;
-  });
+  // Only create table if at least one cell has content
+  if (!imageCell && !contentCell.hasChildNodes()) return;
 
-  // Compose the table rows
+  const headerRow = ['Columns (columns7)'];
+  const contentRow = [imageCell, contentCell];
   const rows = [headerRow, contentRow];
 
-  // Create the table block
   const table = WebImporter.DOMUtils.createTable(rows, document);
-
-  // Replace the original element with the new table
   element.replaceWith(table);
 }

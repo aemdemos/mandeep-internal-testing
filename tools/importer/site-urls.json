@@ -1,36 +1,30 @@
 {
-  "originUrl": "https://www.citizensbank.com",
+  "originUrl": "https://www.medtronic.com",
   "aborted": false,
   "urls": [
     {
-      "url": "https://www.citizensbank.com/checking/overview.aspx",
+      "url": "https://www.medtronic.com/in-en/healthcare-professionals.html",
       "source": "MANUAL",
-      "targetPath": "/checking/overview-aspx",
-      "id": "2939b6f930065b8d21273c25c01507c13ae023a8"
+      "targetPath": "/in-en/healthcare-professionals",
+      "id": "63714cd41b4b49c11cdee12b024c08a80abda210"
     },
     {
-      "url": "https://www.citizensbank.com/credit-cards/overview.aspx",
+      "url": "https://www.medtronic.com/in-en/index.html",
       "source": "MANUAL",
-      "targetPath": "/credit-cards/overview-aspx",
-      "id": "a9ddfda12cc9a67b742df355ebbc7d161d775558"
+      "targetPath": "/in-en",
+      "id": "3462ed27d3c1de41c4a9c6a97bd64fab979fc254"
     },
     {
-      "url": "https://www.citizensbank.com/savings/cds-certificates-of-deposit/online-certificate-of-deposit.aspx",
+      "url": "https://www.medtronic.com/in-en/our-company.html",
       "source": "MANUAL",
-      "targetPath": "/savings/cds-certificates-of-deposit/online-certificate-of-deposit-aspx",
-      "id": "d23406c313077f53ef23e86fd26654d0eb07ab80"
+      "targetPath": "/in-en/our-company",
+      "id": "867525b3bcfdb6918005c7fe05c521a35df604e2"
     },
     {
-      "url": "https://www.citizensbank.com/savings/money-market-accounts/overview.aspx",
+      "url": "https://www.medtronic.com/in-en/our-impact.html",
       "source": "MANUAL",
-      "targetPath": "/savings/money-market-accounts/overview-aspx",
-      "id": "78ea4bc536fbc566a848ed9937abe239b3c38564"
-    },
-    {
-      "url": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx",
-      "source": "MANUAL",
-      "targetPath": "/savings/savings-accounts/overview-aspx",
-      "id": "f7c11c2eb47250da73bf51416aff2243e4e32bb7"
+      "targetPath": "/in-en/our-impact",
+      "id": "1cb1b96977e91d26e2406d970c59af25a7db30ae"
     }
   ],
   "lastCrawled": "MANUAL",

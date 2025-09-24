@@ -1,66 +1,49 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the main feature single section
-  const section = element.querySelector('section.dcom-c-featureSingle');
-  if (!section) return;
+  // Header row as required
+  const headerRow = ['Columns block (columns11)'];
 
-  // Find the two column grid inside the section
-  const gridWrapper = section.querySelector('.dcom-c-featureSingle__wrapper');
-  if (!gridWrapper) return;
-  const gridRow = gridWrapper.querySelector('.dcom-c-featureSingle__row');
-  if (!gridRow) return;
+  // Find the content column (the white circle with text/button)
+  const colContent = element.querySelector('.circle-content .cmp-container');
 
-  // Get the two column divs
-  const columns = gridRow.querySelectorAll(':scope > div');
-  if (columns.length < 2) return;
-
-  // First column: image
-  const imageCol = columns[0];
-  // The image itself
-  const imageWrapper = imageCol.querySelector('.dcom-c-featureSingle__image-wrapper');
-  let imageEl = null;
-  if (imageWrapper) {
-    imageEl = imageWrapper.querySelector('img');
+  // Defensive fallback if not found
+  let col = colContent;
+  if (!col) {
+    const fallback = element.querySelector('.circle-content');
+    if (fallback) {
+      col = fallback.querySelector('.cmp-container') || fallback;
+    }
   }
+  if (!col) col = element;
 
-  // Second column: content (heading, paragraph, ul, button)
-  const contentCol = columns[1];
-  const contentWrapper = contentCol.querySelector('.dcom-c-featureSingle__content');
-  let contentEls = [];
-  if (contentWrapper) {
-    // Heading
-    const heading = contentWrapper.querySelector('h2');
-    if (heading) contentEls.push(heading);
-    // Paragraph and list
-    const paraDiv = contentWrapper.querySelector('.dcom-c-featureSingle__paragraph');
-    if (paraDiv) {
-      // Add all children (p, ul, etc)
-      Array.from(paraDiv.childNodes).forEach(node => {
-        if (node.nodeType === 1) {
-          contentEls.push(node);
-        }
-      });
-    }
-    // Button
-    const buttonDiv = contentWrapper.querySelector('.dcom-c-featureSingle__buttons');
-    if (buttonDiv) {
-      // Add all links/buttons
-      Array.from(buttonDiv.children).forEach(child => {
-        contentEls.push(child);
-      });
-    }
+  // Extract columns: Each logical block (title, subtitle, paragraph, button) as a separate column
+  // We'll treat each direct child of col as a column
+  const colCells = Array.from(col.children)
+    .filter(child => child.textContent.trim() || child.querySelector('img,a,button'));
+
+  // If only one child, fallback: split by .title/.text/.button selectors
+  let cells;
+  if (colCells.length > 1) {
+    cells = colCells;
+  } else {
+    // Try to split by selectors
+    cells = [
+      col.querySelector('.title.eyebrow'),
+      col.querySelector('.title.avenir-regular'),
+      col.querySelector('.text'),
+      col.querySelector('.button')
+    ].filter(Boolean);
   }
 
   // Build the table rows
-  const headerRow = ['Columns block (columns11)'];
-  const columnsRow = [imageEl, contentEls];
-
-  // Create the table
-  const table = WebImporter.DOMUtils.createTable([
+  const rows = [
     headerRow,
-    columnsRow
-  ], document);
+    cells
+  ];
+
+  // Create the block table
+  const block = WebImporter.DOMUtils.createTable(rows, document);
 
   // Replace the original element
-  element.replaceWith(table);
+  element.replaceWith(block);
 }
