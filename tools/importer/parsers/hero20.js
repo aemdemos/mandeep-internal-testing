@@ -1,80 +1,38 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper: Extract background image URL from inline style
-  function getBackgroundImageUrl(el) {
-    const style = el.getAttribute('style') || '';
-    const match = style.match(/background-image:\s*url\(([^)]+)\)/);
-    if (match && match[1]) {
-      let url = match[1].replace(/\\2f/g, '/').replace(/\s+/g, '').replace(/(^['"]|['"]$)/g, '');
-      url = url.trim();
-      // Only return if it looks like a valid path
-      if (/^https?:\/\//.test(url) || url.startsWith('/')) {
-        return url;
-      }
-    }
-    return null;
-  }
+  // Find the main section
+  const section = element.querySelector('section');
+  if (!section) return;
 
-  // 1. Header row
-  const headerRow = ['Hero (hero19)'];
+  // Find the image (background visual)
+  let imageEl = section.querySelector('.dcom-c-hero-commercial__image');
+  if (!imageEl) imageEl = section.querySelector('img');
 
-  // 2. Background image row
-  let bgImgUrl = null;
-  const bgDiv = element.querySelector('[style*="background-image"]');
-  if (bgDiv) {
-    bgImgUrl = getBackgroundImageUrl(bgDiv);
-  }
-  let bgImgEl = null;
-  if (bgImgUrl) {
-    bgImgEl = document.createElement('img');
-    bgImgEl.src = bgImgUrl;
-    bgImgEl.alt = '';
-  }
-  const bgRow = [bgImgEl ? bgImgEl : ''];
+  // Find the message container (heading, subheading)
+  const messageContainer = section.querySelector('.dcom-c-hero-commercial__message-container');
+  let headingEl = messageContainer ? messageContainer.querySelector('h1') : section.querySelector('h1');
+  let subheadingEl = messageContainer ? messageContainer.querySelector('p') : section.querySelector('p');
 
-  // 3. Content row (eyebrow, title, subheading)
-  let contentGrid = null;
-  const grids = element.querySelectorAll('.aem-Grid');
-  if (grids.length) {
-    contentGrid = grids[grids.length - 1];
-  }
-  if (!contentGrid) contentGrid = element;
+  // Find the CTA (button/link)
+  let ctaWrapper = section.querySelector('.cbds-c-hero-commercial__cta-wrapper');
+  let ctaLink = ctaWrapper ? ctaWrapper.querySelector('a') : section.querySelector('a');
 
-  // Extract text blocks
-  const textBlocks = contentGrid.querySelectorAll(':scope > div .cmp-text');
+  // Compose the content cell for row 3
   const contentCell = [];
-  // Remove empty spans and style title as heading
-  textBlocks.forEach((block, i) => {
-    Array.from(block.childNodes).forEach(node => {
-      if (node.nodeType === 1) {
-        // element
-        // For the title block, wrap first <p> as heading
-        if (i === 1 && node.tagName === 'P') {
-          const h = document.createElement('h2');
-          h.innerHTML = node.innerHTML;
-          contentCell.push(h);
-        } else if (node.tagName === 'P' && node.textContent.trim() !== '') {
-          contentCell.push(node.cloneNode(true));
-        }
-      } else if (node.nodeType === 3) {
-        // text
-        if (node.textContent.trim() !== '') {
-          const span = document.createElement('span');
-          span.textContent = node.textContent;
-          contentCell.push(span);
-        }
-      }
-    });
-  });
+  if (headingEl) contentCell.push(headingEl);
+  if (subheadingEl) contentCell.push(subheadingEl);
+  if (ctaLink) contentCell.push(ctaLink);
 
-  const contentRow = [contentCell.length ? contentCell : ''];
+  // Build the table rows
+  const headerRow = ['Hero (hero20)'];
+  const imageRow = [imageEl || ''];
+  const contentRow = [contentCell];
 
-  const cells = [
+  const table = WebImporter.DOMUtils.createTable([
     headerRow,
-    bgRow,
+    imageRow,
     contentRow,
-  ];
+  ], document);
 
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-  element.replaceWith(block);
+  element.replaceWith(table);
 }
